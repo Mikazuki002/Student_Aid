@@ -1,3 +1,4 @@
+import { Link, NavLink } from 'react-router-dom'
 import { brand, navLinks, topBar } from '../data/content'
 
 type HeaderProps = {
@@ -23,33 +24,37 @@ export default function Header({ onMenuToggle, mobileMenuOpen }: HeaderProps) {
       </div>
 
       <div className="container header__inner">
-        <a className="site-logo-link" href="/" aria-label={`${brand.name} home`}>
-          {/* Replace /images/student-aid-support-group-logo.png with the official logo file I provide. */}
-          <div
-            className="logo-placeholder logo-placeholder--header"
-            role="img"
-            aria-label="Official Student Aid Support Group LLC logo will be added here"
-          >
-            {/* Official Student Aid Support Group LLC logo will be added here. */}
-            <span>{brand.name}</span>
-          </div>
-        </a>
+        <Link className="site-logo-link" to="/" aria-label={`${brand.name} home`}>
+          {/* Replace /image_assets/Student_Aid_Logo.png with the official logo file I provide. */}
+          <img
+            src="/image_assets/Student_Aid_Logo.png"
+            alt="Student Aid Support Group LLC logo"
+            className="site-logo site-logo--header"
+          />
+        </Link>
 
         <nav className="primary-nav" aria-label="Primary navigation">
           <ul className="primary-nav__list">
             {navLinks.map((link) => (
               <li key={link.href} className="primary-nav__item">
-                <a className="primary-nav__link" href={link.href}>
+                <NavLink
+                  className={({ isActive }) =>
+                    `primary-nav__link${isActive ? ' primary-nav__link--active' : ''}`
+                  }
+                  to={link.href}
+                  end={link.href === '/'}
+                  aria-current={undefined}
+                >
                   {link.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
         </nav>
 
-        <a className="btn btn--gold header__cta" href="/contact">
+        <Link className="btn btn--gold header__cta" to="/contact">
           Contact Us
-        </a>
+        </Link>
 
         <button
           type="button"

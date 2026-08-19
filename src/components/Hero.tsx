@@ -24,14 +24,12 @@ export default function Hero() {
         </div>
         <div className="hero__visual" aria-hidden="true">
           <div className="hero__visual-card">
-            <div
-              className="logo-placeholder logo-placeholder--hero"
-              role="img"
-              aria-label="Official Student Aid Support Group LLC logo will be added here"
-            >
-              {/* Official Student Aid Support Group LLC logo will be added here. */}
-              <span>{brand.name}</span>
-            </div>
+            {/* Official Student Aid Support Group LLC logo will be added here. */}
+            <img
+              src="/image_assets/Student_Aid_Logo.png"
+              alt=""
+              className="site-logo site-logo--hero"
+            />
             <div className="hero__visual-divider" />
             <p className="hero__visual-text">
               {brand.tagline}

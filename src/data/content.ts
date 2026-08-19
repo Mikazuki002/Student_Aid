@@ -1,4 +1,4 @@
-// Centralized content for the Student Aid Support Group LLC homepage.
+// Centralized content for the Student Aid Support Group LLC website.
 // Keeping copy here makes future updates simple and prevents the JSX
 // from filling up with hard-coded text.
 
@@ -10,6 +10,7 @@ export const brand = {
   email: 'studentaidsupportgroupllc@gmail.com',
   emailHref: 'mailto:studentaidsupportgroupllc@gmail.com',
   address: '5551 Hollywood Blvd, Los Angeles, CA 90028',
+  hours: 'Monday–Friday, 8:00 AM–9:00 PM CST',
 }
 
 export const topBar = {
@@ -23,6 +24,8 @@ export const navLinks = [
   { label: 'Groundwork Services', href: '/groundwork-services' },
   { label: 'Contact', href: '/contact' },
 ]
+
+// ---------- Home page ----------
 
 export const hero = {
   eyebrow: brand.tagline,
@@ -137,4 +140,285 @@ export const footer = {
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Terms of Service', href: '/terms-of-service' },
   ],
+}
+
+// ---------- Page titles ----------
+
+export const pageTitles: Record<string, string> = {
+  '/': 'Student Aid Support Group LLC | Student Loan Guidance',
+  '/about': 'About | Student Aid Support Group LLC',
+  '/student-support-services': 'Student Support Services | Student Aid Support Group LLC',
+  '/groundwork-services': 'Groundwork Services | Student Aid Support Group LLC',
+  '/contact': 'Contact | Student Aid Support Group LLC',
+  '/privacy-policy': 'Privacy Policy | Student Aid Support Group LLC',
+  '/terms-of-service': 'Terms of Service | Student Aid Support Group LLC',
+}
+
+// ---------- About page ----------
+
+export const about = {
+  hero: {
+    heading: 'About Student Aid Support Group LLC',
+    text: 'Supporting students and families with clearer information, organized guidance, and practical document support.',
+  },
+  main: {
+    heading: 'Guidance Built Around Clarity',
+    text: 'Student Aid Support Group LLC is a private consulting company focused on helping people better understand student loan-related information and organize the paperwork connected to their next steps.',
+  },
+  values: {
+    heading: 'What We Value',
+    items: [
+      {
+        title: 'Clarity',
+        text: 'We explain information in plain language so clients can make better-informed decisions.',
+      },
+      {
+        title: 'Organization',
+        text: 'We help clients understand what information and documents may be needed.',
+      },
+      {
+        title: 'Transparency',
+        text: 'We clearly explain the difference between public programs and private assistance.',
+      },
+      {
+        title: 'Respect',
+        text: 'We listen carefully and provide support without pressure.',
+      },
+    ],
+  },
+  process: {
+    heading: 'How We Support You',
+    description:
+      'A four-step approach designed to make your experience organized and easy to follow.',
+    steps: [
+      { number: '01', title: 'Listen to your questions', description: 'We begin by listening so we understand what you are trying to learn.' },
+      { number: '02', title: 'Review the information you provide', description: 'We go over what you share and identify the areas that may deserve further review.' },
+      { number: '03', title: 'Explain possible paths and next steps', description: 'We walk you through what each option could mean for your situation.' },
+      { number: '04', title: 'Help you stay organized', description: 'We help you keep documents and questions in order so next steps are easier to manage.' },
+    ],
+  },
+  disclaimer:
+    'Eligibility depends on applicable federal requirements. Results are not guaranteed. Student Aid Support Group LLC is a private consulting company and is not a government agency, lender, loan servicer, or debt settlement company.',
+}
+
+// ---------- Student Support Services page ----------
+
+export const studentSupport = {
+  hero: {
+    title: 'Student Support Services',
+    text: 'Practical guidance and document support for people trying to better understand their student loan options.',
+  },
+  whatWeHelpWith: {
+    heading: 'What We Help With',
+    items: [
+      {
+        title: 'Information Review',
+        text: 'Organize the basic information needed to understand your situation.',
+      },
+      {
+        title: 'Program Understanding',
+        text: 'Learn about repayment and forgiveness-related programs that may be relevant to your circumstances.',
+      },
+      {
+        title: 'Document Preparation Support',
+        text: 'Get help organizing information and preparing paperwork for your review.',
+      },
+      {
+        title: 'Ongoing Guidance',
+        text: 'Receive support as questions arise and next steps become clearer.',
+      },
+    ],
+  },
+  approach: {
+    heading: 'Our Four-Step Approach',
+    steps: [
+      { number: '01', title: 'Eligibility Information Review', description: 'We review the information you share so we can discuss what may apply.' },
+      { number: '02', title: 'Program Information', description: 'We explain the programs that may be worth exploring further.' },
+      { number: '03', title: 'Document Organization', description: 'We help you put paperwork and questions in order for your own review.' },
+      { number: '04', title: 'Continued Support', description: 'We stay available as new questions come up along the way.' },
+    ],
+  },
+  audience: {
+    heading: 'Who May Benefit',
+    items: [
+      'People with federal student loans.',
+      'Graduates who feel overwhelmed by loan-related paperwork.',
+      'Teachers, nurses, healthcare workers, and public-service employees seeking clearer information.',
+      'Borrowers who want help organizing their questions and documents.',
+    ],
+  },
+  important: {
+    heading: 'Important to Know',
+    items: [
+      'Federal programs may be available to apply for directly through official government resources.',
+      'Private assistance is optional.',
+      'Results and eligibility are not guaranteed.',
+      'Accurate information is important.',
+      'Student Aid Support Group LLC is not a government agency, lender, servicer, debt settlement company, law firm, or tax adviser.',
+    ],
+  },
+}
+
+// ---------- Groundwork Services page ----------
+
+export const groundwork = {
+  hero: {
+    heading: 'Start With Clarity. Build With Confidence.',
+    text: 'Begin with an organized review of the information needed to understand your possible next steps.',
+  },
+  whatIs: {
+    heading: 'What Is Groundwork?',
+    text: 'Groundwork is an initial information and organization process. It helps create a clearer picture of the information you provide, the questions you have, and the possible paths that may deserve further review.',
+    note: 'Groundwork does not guarantee eligibility or forgiveness. Final determinations are made by the relevant federal programs.',
+  },
+  benefits: {
+    heading: 'Why Start With Groundwork',
+    items: [
+      { title: 'Organized Information', text: 'Bring your information together in a clear, structured way.' },
+      { title: 'Clearer Questions', text: 'Identify the right questions to ask before you move forward.' },
+      { title: 'Plain-Language Explanations', text: 'Understand terms and options without confusing jargon.' },
+      { title: 'Better Next-Step Preparation', text: 'Set yourself up to make better-informed decisions about what to do next.' },
+    ],
+  },
+  howItWorks: {
+    heading: 'How It Works',
+    steps: [
+      { number: '01', title: 'Share basic information', description: 'Tell us enough about your situation for us to begin an organized review.' },
+      { number: '02', title: 'Review the information provided', description: 'We look over what you have shared and identify the areas that may deserve further review.' },
+      { number: '03', title: 'Discuss possible areas for further review', description: 'We talk through what the information suggests and what paths may be worth exploring.' },
+      { number: '04', title: 'Decide whether you want to continue', description: 'There is no obligation to continue after the initial discussion.' },
+    ],
+    noObligation: 'There is no obligation to continue after the initial discussion.',
+  },
+  cta: {
+    heading: 'Ready to Start With Clarity?',
+    text: 'Begin with an organized review of your information. We will help you understand what may be worth looking into next.',
+    buttonLabel: 'Contact Us',
+    href: '/contact',
+  },
+}
+
+// ---------- Contact page ----------
+
+export const contact = {
+  hero: {
+    heading: "We're Here to Help",
+    text: 'Have questions about student loan guidance or document support? Send us a message and tell us what you would like help understanding.',
+  },
+  details: {
+    phoneLabel: 'Phone',
+    emailLabel: 'Email',
+    addressLabel: 'Address',
+    hoursLabel: 'Hours',
+  },
+  form: {
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    email: 'Email',
+    phone: 'Phone (optional)',
+    message: 'What can we help you with?',
+    consent:
+      'I understand that submitting this form does not create a client relationship and that Student Aid Support Group LLC is a private consulting company, not a government agency or law firm.',
+    submit: 'Submit Message',
+    sensitiveWarning:
+      'Please do not include Social Security numbers, account passwords, or other highly sensitive information in this form.',
+    devNote: 'Frontend prototype only. This form is not connected to email or a backend yet.',
+    validationNote:
+      'Client-side validation is for visual behavior in this prototype. Server-side validation will be required before production.',
+    blockedConsoleMessage:
+      'Form submission is disabled in the frontend prototype. Backend integration will be added in a later phase.',
+  },
+  notFoundCta: {
+    returnHome: 'Return Home',
+    contact: 'Contact Us',
+  },
+}
+
+// ---------- Legal placeholders ----------
+
+export const privacyPolicy = {
+  heading: 'Privacy Policy',
+  notice:
+    'Draft placeholder — this page must be replaced with legally reviewed policy text before launch.',
+  sections: [
+    {
+      heading: 'Information We May Receive',
+      text: 'This is placeholder copy describing the kinds of information a user may share through our forms or communications. The final policy will list exactly what is collected and why. Legal review is required before launch.',
+    },
+    {
+      heading: 'How Information May Be Used',
+      text: 'Placeholder copy describing how information may be used to respond to inquiries, provide guidance, and improve services. The final version will reflect actual practices after legal review.',
+    },
+    {
+      heading: 'Data Security',
+      text: 'Placeholder copy describing reasonable safeguards and the limits of any security measures. The final policy will be reviewed by qualified counsel.',
+    },
+    {
+      heading: 'Service Providers',
+      text: 'Placeholder copy describing any third-party vendors that may process information on our behalf (for example, hosting or email services). The final policy will list actual providers.',
+    },
+    {
+      heading: 'Your Choices',
+      text: 'Placeholder copy describing how a user can request access, correction, or deletion of their information, subject to applicable law. The final version will reflect actual procedures.',
+    },
+    {
+      heading: 'Policy Updates',
+      text: 'Placeholder copy explaining that this policy may be updated and how changes will be communicated. The final version will reflect actual practice.',
+    },
+    {
+      heading: 'Contact Information',
+      text: 'Placeholder copy directing questions about this policy to our contact details below.',
+    },
+  ],
+}
+
+export const termsOfService = {
+  heading: 'Terms of Service',
+  notice:
+    'Draft placeholder — this page must be replaced with legally reviewed terms before launch.',
+  sections: [
+    {
+      heading: 'Description of Services',
+      text: 'Placeholder copy describing the consulting and document-support services offered. The final version will reflect actual service scope after attorney review.',
+    },
+    {
+      heading: 'Private Company Disclosure',
+      text: 'Placeholder copy disclosing that Student Aid Support Group LLC is a private consulting company and is not a government agency, lender, servicer, debt settlement company, law firm, or tax adviser.',
+    },
+    {
+      heading: 'No Legal, Financial, or Tax Advice',
+      text: 'Placeholder copy stating that the information provided does not constitute legal, financial, or tax advice and that users should consult qualified professionals for those matters.',
+    },
+    {
+      heading: 'User Responsibilities',
+      text: 'Placeholder copy describing the user’s responsibility to provide accurate information and to make independent decisions.',
+    },
+    {
+      heading: 'No Guaranteed Results',
+      text: 'Placeholder copy stating that program availability and eligibility depend on applicable federal requirements and that results are not guaranteed.',
+    },
+    {
+      heading: 'Fees and Refunds',
+      text: 'Placeholder copy describing fee structures and any refund terms. The final version will reflect actual billing practices.',
+    },
+    {
+      heading: 'Limitation of Liability',
+      text: 'Placeholder copy describing limits on liability to the extent permitted by law. The final version will be drafted with attorney input.',
+    },
+    {
+      heading: 'Contact Information',
+      text: 'Placeholder copy directing questions about these terms to our contact details below.',
+    },
+  ],
+}
+
+// ---------- Not Found ----------
+
+export const notFound = {
+  heading: 'Page Not Found',
+  text: 'The page you are looking for does not exist or may have moved.',
+  returnHome: 'Return Home',
+  contact: 'Contact Us',
+  homeHref: '/',
+  contactHref: '/contact',
 }

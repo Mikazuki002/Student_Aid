@@ -1,28 +1,29 @@
-import Header from './components/Header'
-import MobileMenu from './components/MobileMenu'
-import Hero from './components/Hero'
-import TrustSection from './components/TrustSection'
-import ServicesSection from './components/ServicesSection'
-import ProcessSection from './components/ProcessSection'
-import CTASection from './components/CTASection'
-import Footer from './components/Footer'
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import AboutPage from './pages/AboutPage'
+import StudentSupportServicesPage from './pages/StudentSupportServicesPage'
+import GroundworkServicesPage from './pages/GroundworkServicesPage'
+import ContactPage from './pages/ContactPage'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
+import TermsOfServicePage from './pages/TermsOfServicePage'
+import NotFoundPage from './pages/NotFoundPage'
 
+// Single top-level router lives in main.tsx (BrowserRouter).
+// This file just declares the routes.
 export default function App() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
   return (
-    <>
-      <Header onMenuToggle={() => setMobileMenuOpen((v) => !v)} mobileMenuOpen={mobileMenuOpen} />
-      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
-      <main>
-        <Hero />
-        <TrustSection />
-        <ServicesSection />
-        <ProcessSection />
-        <CTASection />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route
+        path="/student-support-services"
+        element={<StudentSupportServicesPage />}
+      />
+      <Route path="/groundwork-services" element={<GroundworkServicesPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+      <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   )
 }

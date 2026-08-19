@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { brand, footer } from '../data/content'
 
 export default function Footer() {
@@ -20,9 +21,9 @@ export default function Footer() {
             <ul className="footer__nav-list">
               {footer.links.map((link) => (
                 <li key={link.href}>
-                  <a className="footer__link" href={link.href}>
+                  <Link className="footer__link" to={link.href}>
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { NavLink } from 'react-router-dom'
 import { navLinks } from '../data/content'
 
 type MobileMenuProps = {
@@ -23,7 +24,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   // Focus first link when opened
   useEffect(() => {
     if (isOpen) {
-      // Defer to allow transition before focusing
       const t = setTimeout(() => firstLinkRef.current?.focus(), 50)
       return () => clearTimeout(t)
     }
@@ -51,27 +51,30 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <ul className="mobile-menu__list">
           {navLinks.map((link, idx) => (
             <li key={link.href}>
-              <a
+              <NavLink
                 ref={idx === 0 ? firstLinkRef : undefined}
-                className="mobile-menu__link"
-                href={link.href}
+                className={({ isActive }) =>
+                  `mobile-menu__link${isActive ? ' mobile-menu__link--active' : ''}`
+                }
+                to={link.href}
+                end={link.href === '/'}
                 onClick={onClose}
                 tabIndex={isOpen ? 0 : -1}
               >
                 {link.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
       </nav>
-      <a
+      <NavLink
         className="btn btn--gold mobile-menu__cta"
-        href="/contact"
+        to="/contact"
         onClick={onClose}
         tabIndex={isOpen ? 0 : -1}
       >
         Contact Us
-      </a>
+      </NavLink>
     </div>
   )
 }
