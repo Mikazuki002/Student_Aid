@@ -25,9 +25,11 @@ export default function Header({ onMenuToggle, mobileMenuOpen }: HeaderProps) {
 
       <div className="container header__inner">
         <Link className="site-logo-link" to="/" aria-label={`${brand.name} home`}>
-          {/* Replace /image_assets/Student_Aid_Logo-removebg.png with the official logo file I provide. */}
+          {/* Background-removed logo. Path goes through BASE_URL so it
+              resolves under /Student_Aid/ on GitHub Pages and under /
+              on the local dev server. */}
           <img
-            src="/image_assets/Student_Aid_Logo-removebg.png"
+            src={`${import.meta.env.BASE_URL}image_assets/Student_Aid_Logo-removebg.png`}
             alt="Student Aid Support Group LLC logo"
             width={56}
             height={56}

@@ -24,9 +24,11 @@ export default function Hero() {
         </div>
         <div className="hero__visual" aria-hidden="true">
           <div className="hero__visual-card">
-            {/* Official Student Aid Support Group LLC logo will be added here. */}
+            {/* Background-removed logo. Path goes through BASE_URL so it
+                resolves under /Student_Aid/ on GitHub Pages and under /
+                on the local dev server. */}
             <img
-              src="/image_assets/Student_Aid_Logo.png"
+              src={`${import.meta.env.BASE_URL}image_assets/Student_Aid_Logo-removebg.png`}
               alt=""
               width={360}
               height={180}
