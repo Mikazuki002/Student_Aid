@@ -154,6 +154,24 @@ export const pageTitles: Record<string, string> = {
   '/terms-of-service': 'Terms of Service | Student Aid Support Group LLC',
 }
 
+// ---------- Meta descriptions (one per route, including 404) ----------
+
+export const pageDescriptions: Record<string, string> = {
+  '/': 'Student Aid Support Group LLC provides clear student loan guidance and document support for borrowers seeking organized information about their options.',
+  '/about':
+    'Learn about Student Aid Support Group LLC — a private consulting company offering student loan guidance, document support, and clear next-step explanations.',
+  '/student-support-services':
+    'Practical guidance and document support for borrowers trying to better understand their federal student loan options.',
+  '/groundwork-services':
+    'Begin with an organized review of your information so you can better understand your possible next steps.',
+  '/contact':
+    'Contact Student Aid Support Group LLC for student loan guidance and document support. Phone, email, and a secure contact form.',
+  '/privacy-policy':
+    'Privacy policy placeholder for Student Aid Support Group LLC. Final version pending legal review.',
+  '/terms-of-service':
+    'Terms of service placeholder for Student Aid Support Group LLC. Final version pending legal review.',
+}
+
 // ---------- About page ----------
 
 export const about = {
@@ -320,13 +338,32 @@ export const contact = {
     consent:
       'I understand that submitting this form does not create a client relationship and that Student Aid Support Group LLC is a private consulting company, not a government agency or law firm.',
     submit: 'Submit Message',
+    sending: 'Sending…',
     sensitiveWarning:
-      'Please do not include Social Security numbers, account passwords, or other highly sensitive information in this form.',
-    devNote: 'Frontend prototype only. This form is not connected to email or a backend yet.',
+      'Please do not include Social Security numbers, account passwords, federal account credentials, or other highly sensitive information.',
+    devNote:
+      'Frontend prototype only. A secure backend and server-side validation are required before this form can be used in production.',
     validationNote:
       'Client-side validation is for visual behavior in this prototype. Server-side validation will be required before production.',
+    readyNotice:
+      'Your message is ready for submission, but this frontend prototype is not connected to email yet.',
     blockedConsoleMessage:
       'Form submission is disabled in the frontend prototype. Backend integration will be added in a later phase.',
+    errors: {
+      firstNameRequired: 'Please enter your first name.',
+      firstNameLength: 'First name must be between 2 and 50 characters.',
+      lastNameRequired: 'Please enter your last name.',
+      lastNameLength: 'Last name must be between 2 and 50 characters.',
+      emailRequired: 'Please enter your email address.',
+      emailInvalid: 'Please enter a valid email address.',
+      emailLength: 'Email must be at most 254 characters.',
+      phoneLength: 'Phone number must be at most 25 characters.',
+      messageRequired: 'Please enter a message.',
+      messageLength: 'Your message must be between 10 and 1,000 characters.',
+      consentRequired:
+        'Please confirm that you understand this form is not for highly sensitive information.',
+      formSummary: 'Please review the highlighted fields below and try again.',
+    },
   },
   notFoundCta: {
     returnHome: 'Return Home',

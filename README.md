@@ -1,6 +1,6 @@
 # Student Aid Support Group LLC — Frontend
 
-A clean, professional, accessible homepage for **Student Aid Support Group LLC**, built as a Phase 1 frontend-only prototype. No backend, no database, no authentication, no payments — just the website shell, ready for future expansion.
+A clean, professional, accessible website for **Student Aid Support Group LLC**, built across three frontend-only phases. No backend, no database, no authentication, no payments — just the website shell, ready for future expansion.
 
 > **Supporting Students • Empowering Futures**
 
@@ -8,7 +8,7 @@ A clean, professional, accessible homepage for **Student Aid Support Group LLC**
 
 ## What this is
 
-A single-page React + Vite + TypeScript site that introduces the company, lists services, walks through a four-step process, and routes visitors to a contact page. All copy is real business copy. There are no fake testimonials, fake statistics, fake awards, or guarantees of any kind.
+A multi-page React + Vite + TypeScript site with a homepage, About, Student Support Services, Groundwork Services, Contact, Privacy Policy, Terms of Service, and a 404 fallback. All copy is real business copy. There are no fake testimonials, fake statistics, fake awards, or guarantees of any kind.
 
 ### Brand
 
@@ -18,6 +18,7 @@ A single-page React + Vite + TypeScript site that introduces the company, lists 
 | **Phone** | 213-261-0646 |
 | **Email** | studentaidsupportgroupllc@gmail.com |
 | **Address** | 5551 Hollywood Blvd, Los Angeles, CA 90028 |
+| **Hours** | Monday–Friday, 8:00 AM–9:00 PM CST |
 | **Style** | Professional, trustworthy, premium, academic, calm, clear, helpful, student-focused |
 
 ### Brand colors
@@ -36,15 +37,24 @@ A single-page React + Vite + TypeScript site that introduces the company, lists 
 
 ---
 
+## Phases at a glance
+
+- **Phase 1** — homepage shell, brand styling, F5 debug config, repo hygiene.
+- **Phase 2** — client-side routing, all main pages, shared layout, per-page titles.
+- **Phase 3** — full contact form with accessible validation, SEO meta descriptions, responsive polish, image dimension hints, robots.txt.
+- **Polish pass** — three carved-obsidian trust icons, then the navbar redesigned around the transparent RemoveBG logo.
+
+---
+
 ## Tech stack
 
 - **React 18** + **TypeScript** (strict)
 - **Vite 5** dev server and build
-- **Plain CSS** — no Tailwind, no UI framework, no runtime CSS-in-JS
-- **Zero runtime dependencies beyond React** — keeps the bundle small and the project easy to maintain
-- Inline SVG icons (decorative, `aria-hidden`) — no icon library
+- **react-router-dom 6** for client-side routing
+- **Plain CSS** — single stylesheet, no Tailwind, no UI framework
+- **Inline SVG** for icons (decorative, `aria-hidden`) — no icon library
 
-No backend. No database. No auth. No payments. No form submission. No email sending. No document uploads.
+Zero runtime dependencies beyond React and React Router. No backend. No database. No auth. No payments. No form submission.
 
 ---
 
@@ -53,30 +63,50 @@ No backend. No database. No auth. No payments. No form submission. No email send
 ```
 Student_Aid/
 ├── .vscode/
-│   └── launch.json          # F5 debug config
-├── index.html               # Vite entry
+│   └── launch.json              # F5 debug config (npm.cmd run dev)
+├── index.html                   # Vite entry
 ├── package.json
 ├── tsconfig.json
 ├── vite.config.ts
 ├── public/
-│   └── images/
-│       ├── README.md        # Where to drop the official logo
-│       └── (logo goes here) # student-aid-support-group-logo.png
+│   ├── robots.txt               # Allow-all for the prototype
+│   ├── images/
+│   │   └── README.md            # Original Phase 1 logo path docs
+│   └── image_assets/
+│       └── Student_Aid_Logo-removebg.png   # Transparent logo (current)
 └── src/
-    ├── App.tsx              # Composes the page
-    ├── main.tsx             # React root
-    ├── index.css            # All styling (single file)
+    ├── main.tsx                 # React root + <BrowserRouter>
+    ├── App.tsx                  # <Routes> for every page
+    ├── index.css                # All styling, single file
     ├── data/
-    │   └── content.ts       # All copy lives here
-    └── components/
-        ├── Header.tsx
-        ├── MobileMenu.tsx
-        ├── Hero.tsx
-        ├── TrustSection.tsx
-        ├── ServicesSection.tsx
-        ├── ProcessSection.tsx
-        ├── CTASection.tsx
-        └── Footer.tsx
+    │   └── content.ts           # Every user-visible string lives here
+    ├── hooks/
+    │   └── useDocumentTitle.ts  # Title + meta description per route
+    ├── components/
+    │   ├── Header.tsx
+    │   ├── MobileMenu.tsx
+    │   ├── Hero.tsx
+    │   ├── TrustSection.tsx     # Three carved-obsidian trust marks
+    │   ├── ServicesSection.tsx
+    │   ├── ProcessSection.tsx
+    │   ├── CTASection.tsx
+    │   ├── Footer.tsx
+    │   ├── ContactForm.tsx      # Frontend-only with full validation
+    │   ├── SiteLayout.tsx       # Shared chrome used by every page
+    │   ├── PageHero.tsx
+    │   ├── SectionHeading.tsx
+    │   ├── InfoCard.tsx
+    │   ├── ProcessSteps.tsx
+    │   └── LegalNotice.tsx
+    └── pages/
+        ├── HomePage.tsx
+        ├── AboutPage.tsx
+        ├── StudentSupportServicesPage.tsx
+        ├── GroundworkServicesPage.tsx
+        ├── ContactPage.tsx
+        ├── PrivacyPolicyPage.tsx
+        ├── TermsOfServicePage.tsx
+        └── NotFoundPage.tsx
 ```
 
 ---
@@ -99,7 +129,7 @@ npm.cmd run build
 npm.cmd run preview
 ```
 
-Output goes to `dist/`.
+Output goes to `dist/`. Final size at time of writing: **~210 kB JS / ~26 kB CSS** (≈ 64 kB / 5 kB gzipped).
 
 ---
 
@@ -118,76 +148,63 @@ VS Code opens an integrated terminal running `npm.cmd run dev -- --host 127.0.0.
 
 ## The official logo
 
-The header and hero currently show a clean text placeholder reading **Student Aid Support Group LLC**.
+The current logo is the transparent RemoveBG version:
 
-To replace it with the official logo:
+```
+public/image_assets/Student_Aid_Logo-removebg.png
+```
 
-1. Drop the official PNG at `public/images/student-aid-support-group-logo.png`.
-2. In `src/components/Header.tsx`, replace the `<div className="logo-placeholder ...">` block with:
+It is referenced from:
 
-   ```tsx
-   <img
-     src="/images/student-aid-support-group-logo.png"
-     alt="Student Aid Support Group LLC logo"
-     className="site-logo"
-   />
-   ```
+- `src/components/Header.tsx` — `<img src="/image_assets/Student_Aid_Logo-removebg.png" ...>`
+- `src/components/Hero.tsx` (homepage hero card) — same path.
 
-3. Do the same swap in `src/components/Hero.tsx`.
+Both spots carry the required comment about the path. The logo sits directly on the white header (no tile, no badge, no dark box) at 56 px on desktop and 44 px on mobile.
 
-The exact comments `{/* Official Student Aid Support Group LLC logo will be added here. */}` and `{/* Replace /images/student-aid-support-group-logo.png with the official logo file I provide. */}` are already in place at both locations.
+### Logo rules respected by the code
 
-### Logo rules respected by the current code
-
-- Never stretched or blurred — the `<img>` is constrained by `max-width: 100%`.
-- Responsive — it scales with the header.
-- No cropping — the container reserves space before the image loads.
-- Not used as a background — semantic `<img>` with real `alt` text.
-- The header uses a light marble background, so a logo with either a light or a dark background will read correctly. If the supplied logo has a dark background, a thin border or subtle background can be added to the `.site-logo` rule in `index.css` to maintain contrast.
+- Never stretched or blurred — `max-width: 100%`, explicit `width`/`height` reserved on the element.
+- Responsive — scales with the header.
+- No cropping — `object-fit` default keeps the source aspect.
+- Semantic `<img>` with real `alt` text in the header (the hero visual is decorative — `alt=""`).
+- White header background gives both light- and dark-background logos a clean stage.
 
 ---
 
 ## Accessibility
 
-- One `<h1>` (in the hero) and a logical heading order throughout.
+- One `<h1>` per page and a logical heading order throughout.
 - Real `<button>` elements with `aria-expanded` / `aria-controls` for the mobile menu.
 - Keyboard-accessible nav, visible `:focus-visible` outlines.
 - Decorative SVGs marked `aria-hidden="true"`.
 - Semantic landmarks: `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`, `<address>`.
 - Color contrast meets WCAG AA on all text against its background.
-- `prefers-reduced-motion` honored globally — transitions and animations are reduced to ~0ms.
+- `prefers-reduced-motion` honored globally — transitions reduced to ~0 ms.
 - Touch targets ≥ 44×44 px on all interactive elements.
+- Contact form: each field has a `<label htmlFor>`; errors use `role="alert"` and are wired to inputs via `aria-describedby`; invalid submit moves focus to the first invalid field; the form summary uses `role="alert"` and `aria-describedby`.
 
-The site has **no horizontal scroll** on phones, tablets, laptops, or desktop screens. Layout is verified at 320 px and up.
+This site has **no horizontal scroll** on phones, tablets, laptops, or desktop screens. Responsive verified at 320, 375, 390, 540, 720, 768, 960, 1024, 1080, 1200, 1440 px.
+
+**This is not a formal WCAG audit.** axe DevTools / Lighthouse / manual screen-reader testing is recommended before production.
 
 ---
 
 ## What's intentionally NOT here
 
-This is a frontend prototype. The following are explicitly out of scope for Phase 1 and are not stubbed with fake behavior:
+This is a frontend prototype. The following are explicitly out of scope and are not stubbed with fake behavior:
 
 - ❌ Database
 - ❌ Login / accounts
 - ❌ Payments
-- ❌ Real email sending
+- � Real email sending
 - ❌ Document uploads
 - ❌ Real form submission
-- ❌ Fake "success" messages
+- � Fake "success" messages
 - ❌ Fake statistics, testimonials, awards, or guarantees
-- ❌ Any claim of government affiliation
+- � Any claim of government affiliation
+- ❌ Real (non-placeholder) legal copy
 
 A short dev note appears in the footer of the live site: *"Frontend prototype. Forms and backend features are not connected yet."*
-
----
-
-## Roadmap (Phase 2 and beyond)
-
-1. Add `react-router-dom` and wire the placeholder paths (`/about`, `/student-support-services`, `/groundwork-services`, `/contact`) to real page components.
-2. Build out the About, Services, Groundwork, and Contact pages using the same component patterns.
-3. Wire the Contact form to a real backend (Node/Express, serverless, or a hosted form service) — no fake success states.
-4. Add Privacy Policy and Terms of Service pages (the footer already links to placeholders).
-5. Replace the logo placeholders with the official artwork.
-6. Optional: add SEO meta per route, Open Graph image, sitemap, robots.txt.
 
 ---
 
@@ -195,4 +212,4 @@ A short dev note appears in the footer of the live site: *"Frontend prototype. F
 
 Student Aid Support Group LLC is a private consulting company. It is not a lender, loan servicer, debt settlement company, or government agency. It does not provide legal, financial, or tax advice. Program availability and eligibility depend on applicable federal requirements. Results are not guaranteed.
 
-This repository is a frontend prototype for development purposes.
+The Privacy Policy and Terms of Service pages are placeholder drafts pending attorney review.

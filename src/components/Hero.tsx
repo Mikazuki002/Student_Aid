@@ -28,6 +28,9 @@ export default function Hero() {
             <img
               src="/image_assets/Student_Aid_Logo.png"
               alt=""
+              width={360}
+              height={180}
+              decoding="async"
               className="site-logo site-logo--hero"
             />
             <div className="hero__visual-divider" />

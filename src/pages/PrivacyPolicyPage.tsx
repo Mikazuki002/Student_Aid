@@ -1,11 +1,11 @@
 import SiteLayout from '../components/SiteLayout'
 import SectionHeading from '../components/SectionHeading'
 import LegalNotice from '../components/LegalNotice'
-import { brand, privacyPolicy, pageTitles } from '../data/content'
+import { brand, privacyPolicy, pageTitles, pageDescriptions } from '../data/content'
 
 export default function PrivacyPolicyPage() {
   return (
-    <SiteLayout title={pageTitles['/privacy-policy']}>
+    <SiteLayout title={pageTitles['/privacy-policy']} description={pageDescriptions['/privacy-policy']}>
       <section className="page-section" aria-labelledby="pp-heading">
         <div className="container">
           <SectionHeading id="pp-heading" heading={privacyPolicy.heading} />

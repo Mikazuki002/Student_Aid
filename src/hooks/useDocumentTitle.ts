@@ -1,13 +1,28 @@
 import { useEffect } from 'react'
 
-// Updates document.title when the route changes.
-// Used by SiteLayout so every page gets its own title.
-export function useDocumentTitle(title: string) {
+// Reusable SEO updater.
+// Sets <title> on mount and cleans up on unmount (so back/forward navigation reverts).
+// Optionally updates the meta[name="description"] tag if a value is provided.
+export function useDocumentTitle(title: string, description?: string) {
   useEffect(() => {
-    const previous = document.title
+    const previousTitle = document.title
     document.title = title
-    return () => {
-      document.title = previous
+
+    let previousDescription: string | null = null
+    let tag: HTMLMetaElement | null = null
+    if (description) {
+      tag = document.querySelector('meta[name="description"]')
+      if (tag) {
+        previousDescription = tag.getAttribute('content')
+        tag.setAttribute('content', description)
+      }
     }
-  }, [title])
+
+    return () => {
+      document.title = previousTitle
+      if (tag && description && previousDescription !== null) {
+        tag.setAttribute('content', previousDescription)
+      }
+    }
+  }, [title, description])
 }

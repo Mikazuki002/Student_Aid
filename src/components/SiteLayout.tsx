@@ -7,13 +7,14 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle'
 type SiteLayoutProps = {
   children: ReactNode
   title: string
+  description?: string
 }
 
 // Shared layout: top contact bar + header + mobile menu drawer + main + footer.
 // Used by every page so we don't duplicate the chrome.
-export default function SiteLayout({ children, title }: SiteLayoutProps) {
+export default function SiteLayout({ children, title, description }: SiteLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  useDocumentTitle(title)
+  useDocumentTitle(title, description)
 
   return (
     <>

@@ -1,11 +1,11 @@
 import SiteLayout from '../components/SiteLayout'
 import PageHero from '../components/PageHero'
 import ContactForm from '../components/ContactForm'
-import { brand, contact, pageTitles } from '../data/content'
+import { brand, contact, pageTitles, pageDescriptions } from '../data/content'
 
 export default function ContactPage() {
   return (
-    <SiteLayout title={pageTitles['/contact']}>
+    <SiteLayout title={pageTitles['/contact']} description={pageDescriptions['/contact']}>
       <PageHero heading={contact.hero.heading} text={contact.hero.text} />
 
       <section className="page-section" aria-labelledby="contact-details-heading">

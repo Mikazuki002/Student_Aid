@@ -25,10 +25,13 @@ export default function Header({ onMenuToggle, mobileMenuOpen }: HeaderProps) {
 
       <div className="container header__inner">
         <Link className="site-logo-link" to="/" aria-label={`${brand.name} home`}>
-          {/* Replace /image_assets/Student_Aid_Logo.png with the official logo file I provide. */}
+          {/* Replace /image_assets/Student_Aid_Logo-removebg.png with the official logo file I provide. */}
           <img
-            src="/image_assets/Student_Aid_Logo.png"
+            src="/image_assets/Student_Aid_Logo-removebg.png"
             alt="Student Aid Support Group LLC logo"
+            width={56}
+            height={56}
+            decoding="async"
             className="site-logo site-logo--header"
           />
         </Link>

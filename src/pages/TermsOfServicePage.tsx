@@ -1,11 +1,11 @@
 import SiteLayout from '../components/SiteLayout'
 import SectionHeading from '../components/SectionHeading'
 import LegalNotice from '../components/LegalNotice'
-import { brand, termsOfService, pageTitles } from '../data/content'
+import { brand, termsOfService, pageTitles, pageDescriptions } from '../data/content'
 
 export default function TermsOfServicePage() {
   return (
-    <SiteLayout title={pageTitles['/terms-of-service']}>
+    <SiteLayout title={pageTitles['/terms-of-service']} description={pageDescriptions['/terms-of-service']}>
       <section className="page-section" aria-labelledby="tos-heading">
         <div className="container">
           <SectionHeading id="tos-heading" heading={termsOfService.heading} />
