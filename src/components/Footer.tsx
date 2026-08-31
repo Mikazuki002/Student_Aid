@@ -32,7 +32,6 @@ export default function Footer() {
           <div className="footer__legal">
             <h2 className="footer__nav-title">Important Information</h2>
             <p className="footer__disclaimer">{footer.disclaimer}</p>
-            <p className="footer__dev-note">{footer.devNote}</p>
           </div>
         </div>
 

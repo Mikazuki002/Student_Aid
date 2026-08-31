@@ -204,8 +204,6 @@ This is a frontend prototype. The following are explicitly out of scope and are 
 - � Any claim of government affiliation
 - ❌ Real (non-placeholder) legal copy
 
-A short dev note appears in the footer of the live site: *"Frontend prototype. Forms and backend features are not connected yet."*
-
 ---
 
 ## Disclaimer

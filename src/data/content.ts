@@ -131,7 +131,6 @@ export const footer = {
   description: brand.tagline,
   disclaimer:
     'Student Aid Support Group LLC is a private consulting company. We are not a lender, loan servicer, debt settlement company, or government agency. We do not provide legal, financial, or tax advice. Program availability and eligibility depend on applicable federal requirements. Results are not guaranteed.',
-  devNote: 'Frontend prototype. Forms and backend features are not connected yet.',
   links: [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
