@@ -12,8 +12,75 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Backend contact intake (replace prototype `handleSubmit` with a real POST endpoint + server-side validation + spam protection).
 - Replace legal placeholders with attorney-drafted Privacy Policy and Terms of Service.
 - Optimize logo file size (120 KB transparent PNG → ~10–30 KB via Squoosh/TinyPNG).
-- Production deploy to a static host with SPA fallback.
-- CI: GitHub Actions running `npm.cmd run build` on every PR.
+
+---
+
+## [0.5.0] — 2026-08-19 22:30 UTC+08:00 — Vercel migration + CI workflow
+
+### Changed
+
+#### Platform Migration: GitHub Pages → Vercel
+- **`vite.config.ts`** — removed GitHub Pages base path logic.
+  - Changed from conditional `base: command === 'build' ? '/Student_Aid/' : '/'` to always `base: '/'`.
+  - Simplified configuration for Vercel deployment (no repository subfolder).
+- **`src/main.tsx`** — removed basename logic from BrowserRouter.
+  - No longer needs `import.meta.env.BASE_URL.replace(/\/$/, '')` logic.
+  - Now uses simple `<BrowserRouter>` with default `/` base.
+- **`index.html`** — removed GitHub Pages SPA fallback restoration script.
+  - Deleted the inline `<script>` that parsed `?p=` query parameters.
+  - Vercel handles SPA routing natively via `vercel.json` rewrites.
+- **`public/404.html`** — deleted (Vercel doesn't need it).
+  - GitHub Pages required custom 404.html for SPA routing.
+  - Vercel uses built-in rewrites defined in vercel.json.
+- **`scripts/generate-sitemap.js`** — made base URL configurable via environment variable.
+  - Now reads `process.env.VITE_SITE_URL` for production domain.
+  - Falls back to `https://student-aid-support-group.vercel.app` if not set.
+  - Logs base URL during sitemap generation for verification.
+- **`public/robots.txt`** — changed to relative sitemap URL.
+  - Changed from `Sitemap: https://mikazuki002.github.io/Student_Aid/sitemap.xml` to `Sitemap: /sitemap.xml`.
+  - Works with any domain (Vercel, custom domain, localhost).
+
+### Added
+
+#### Vercel Configuration
+- **`vercel.json`** — new Vercel deployment configuration.
+  - Specifies build command, output directory, framework preset.
+  - Configures SPA rewrite rule: all routes → `/index.html`.
+  - Enables proper client-side routing for React Router.
+- **`.vercelignore`** — new file to exclude unnecessary files from deployment.
+  - Excludes `.git`, `node_modules`, `.github`, `.vscode`, `.claude`, markdown files (except README.md).
+- **`VERCEL_DEPLOYMENT.md`** — comprehensive Vercel deployment guide.
+  - Quick deploy steps.
+  - Custom domain setup instructions.
+  - Verification checklist (all 7 routes, sitemap, robots.txt, social previews).
+  - Comparison table: GitHub Pages vs. Vercel.
+  - Rollback instructions if needed.
+
+#### Continuous Integration
+- **`.github/workflows/build.yml`** — new GitHub Actions workflow for build checks.
+  - Runs on every pull request and push to main.
+  - Node.js 20.x matrix strategy.
+  - Steps: checkout, setup Node, npm ci, npm run build.
+  - Verifies build artifacts: `dist/` directory, `index.html`, `sitemap.xml`.
+  - Uploads build artifacts for 7-day retention (review/debugging).
+  - Catches build errors before merge.
+
+### Verified
+- ⏳ **Pending:** Vercel deployment verification (requires manual deploy).
+- ⏳ **Pending:** CI workflow verification (requires next PR or push).
+- ✅ All Vercel migration code changes complete.
+- ✅ Build configuration updated for root-path deployment.
+- ✅ SPA routing simplified (no custom fallback scripts).
+
+### Deployment Instructions
+See `VERCEL_DEPLOYMENT.md` for complete deployment guide.
+
+**Quick steps:**
+1. Import `Mikazuki002/Student_Aid` to Vercel
+2. Auto-detected settings: Framework=Vite, Build=`npm run build`, Output=`dist`
+3. Optional: Set `VITE_SITE_URL` environment variable
+4. Deploy (takes ~60 seconds)
+5. Verify all routes work
 
 ---
 

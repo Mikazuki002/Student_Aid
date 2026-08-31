@@ -8,7 +8,10 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const baseUrl = 'https://mikazuki002.github.io/Student_Aid'
+// Use environment variable for base URL, with fallback for local development
+// Set VITE_SITE_URL in Vercel environment variables to your production domain
+const baseUrl = process.env.VITE_SITE_URL || 'https://student-aid-support-group.vercel.app'
+
 const routes = [
   '/',
   '/about',
@@ -39,3 +42,4 @@ ${routes
 const distPath = join(__dirname, '..', 'dist', 'sitemap.xml')
 writeFileSync(distPath, sitemap, 'utf-8')
 console.log(`✅ Sitemap generated at ${distPath}`)
+console.log(`   Base URL: ${baseUrl}`)

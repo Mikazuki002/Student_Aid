@@ -14,26 +14,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      // SPA fallback restoration. GitHub Pages serves 404.html for any unknown
-      // route; that page redirects here with the original path encoded in
-      // ?p=. This script reads it, calls history.replaceState so the user
-      // lands on a clean URL, and lets the React Router pick up the path.
-      ;(function () {
-        try {
-          var params = new URLSearchParams(window.location.search)
-          var p = params.get('p')
-          if (!p) return
-          var q = params.get('q') || ''
-          var h = params.get('h') || ''
-          var restored = '/' + p.replace(/^\/+/, '') + (q ? '?' + q : '') + (h ? '#' + h : '')
-          var clean = window.location.origin + window.location.pathname.replace(/\/?(\?.*)?$/, '') + restored
-          window.history.replaceState(null, '', clean)
-        } catch (e) {
-          /* swallow */
-        }
-      })()
-    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

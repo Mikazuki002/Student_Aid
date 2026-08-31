@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mikazuki002.github.io/Student_Aid/sitemap.xml
+Sitemap: /sitemap.xml
