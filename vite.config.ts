@@ -1,16 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// GitHub Pages uses /Student_Aid/ subpath; Vercel uses root.
-// Base path is conditional: dev server always uses root for convenience,
-// but build uses /Student_Aid/ for GitHub Pages until Vercel is live.
+// Platform-aware base path:
+// - Vercel (detected via VERCEL env var) → root path
+// - GitHub Pages (no VERCEL env var) → /Student_Aid/ subpath
+// - Dev server → always root for convenience
 const repoBase = '/Student_Aid/'
 
-export default defineConfig(({ command }) => ({
-  plugins: [react()],
-  base: command === 'build' ? repoBase : '/',
-  server: {
-    port: 5173,
-    open: true,
-  },
-}))
+export default defineConfig(({ command }) => {
+  const isVercel = process.env.VERCEL === '1'
+  const base = command === 'build' && !isVercel ? repoBase : '/'
+  
+  return {
+    plugins: [react()],
+    base,
+    server: {
+      port: 5173,
+      open: true,
+    },
+  }
+})
