@@ -8,9 +8,9 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-// Use environment variable for base URL, with fallback for local development
+// Use environment variable for base URL, with fallback to GitHub Pages
 // Set VITE_SITE_URL in Vercel environment variables to your production domain
-const baseUrl = process.env.VITE_SITE_URL || 'https://student-aid-support-group.vercel.app'
+const baseUrl = process.env.VITE_SITE_URL || 'https://mikazuki002.github.io/Student_Aid'
 
 const routes = [
   '/',
