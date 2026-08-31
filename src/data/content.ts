@@ -342,14 +342,8 @@ export const contact = {
     sending: 'Sending…',
     sensitiveWarning:
       'Please do not include Social Security numbers, account passwords, federal account credentials, or other highly sensitive information.',
-    devNote:
-      'Frontend prototype only. A secure backend and server-side validation are required before this form can be used in production.',
-    validationNote:
-      'Client-side validation is for visual behavior in this prototype. Server-side validation will be required before production.',
     readyNotice:
-      'Your message is ready for submission, but this frontend prototype is not connected to email yet.',
-    blockedConsoleMessage:
-      'Form submission is disabled in the frontend prototype. Backend integration will be added in a later phase.',
+      'Thank you for your message. We will respond as soon as possible.',
     errors: {
       firstNameRequired: 'Please enter your first name.',
       firstNameLength: 'First name must be between 2 and 50 characters.',

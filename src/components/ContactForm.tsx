@@ -95,6 +95,7 @@ export default function ContactForm() {
   const [phone, setPhone] = useState('')
   const [message, setMessage] = useState('')
   const [consent, setConsent] = useState(false)
+  const [honeypot, setHoneypot] = useState('') // Anti-bot field
 
   const [errors, setErrors] = useState<Errors>({})
   const [attempted, setAttempted] = useState(false)
@@ -127,7 +128,7 @@ export default function ContactForm() {
     refsLive.current[key] = node
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setAttempted(true)
 
@@ -143,14 +144,55 @@ export default function ContactForm() {
       return
     }
 
-    // Prototype: pretend to send, but never make a network call.
+    // Real API call to Vercel serverless function
     setSubmitting(true)
-    // eslint-disable-next-line no-console
-    console.info(contact.form.blockedConsoleMessage)
-    window.setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phone,
+          message,
+          consent,
+          honeypot, // Anti-bot field
+        }),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok || !result.success) {
+        // Server returned an error
+        setSubmitting(false)
+        setErrors({ 
+          message: result.error || 'Failed to send message. Please try again.' 
+        })
+        return
+      }
+
+      // Success
       setSubmitting(false)
       setShowReadyNotice(true)
-    }, 600)
+      
+      // Clear form on success
+      setFirstName('')
+      setLastName('')
+      setEmail('')
+      setPhone('')
+      setMessage('')
+      setConsent(false)
+      setAttempted(false)
+      
+    } catch (err) {
+      // Network error or fetch failed
+      setSubmitting(false)
+      setErrors({ 
+        message: 'Network error. Please check your connection and try again.' 
+      })
+      console.error('[CONTACT FORM ERROR]', err)
+    }
   }
 
   // Returns the id used by aria-describedby for a field's error message.
@@ -198,6 +240,18 @@ export default function ContactForm() {
       )}
 
       <div className="contact-form__grid">
+        {/* Honeypot field — hidden from real users, but bots often fill it */}
+        <input
+          type="text"
+          name="website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
+
         <div className={fieldClass('firstName')}>
           <label htmlFor="cf-firstName" className="form-field__label">
             {contact.form.firstName} <span aria-hidden="true">*</span>
@@ -346,9 +400,6 @@ export default function ContactForm() {
           {submitting ? contact.form.sending : contact.form.submit}
         </button>
       </div>
-
-      <p className="contact-form__dev-note">{contact.form.devNote}</p>
-      <p className="contact-form__validation-note">{contact.form.validationNote}</p>
     </form>
   )
 }
