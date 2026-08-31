@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { Resend } from 'resend'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 // Field validation rules — must match ContactForm.tsx
@@ -160,6 +161,36 @@ export default async function handler(
     }
 
     console.log('[SUCCESS] Lead saved:', data?.[0]?.id)
+
+    // Send email notification via Resend (additive, don't fail if this fails)
+    try {
+      const resendApiKey = process.env.RESEND_API_KEY
+      if (resendApiKey) {
+        const resend = new Resend(resendApiKey)
+        
+        await resend.emails.send({
+          from: 'onboarding@resend.dev',
+          to: 'studentaidsupportgroupllc@gmail.com',
+          subject: `New contact form submission — ${payload.firstName.trim()} ${payload.lastName.trim()}`,
+          html: `
+            <h2>New Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${payload.firstName.trim()} ${payload.lastName.trim()}</p>
+            <p><strong>Email:</strong> ${payload.email.trim()}</p>
+            <p><strong>Phone:</strong> ${payload.phone.trim() || 'Not provided'}</p>
+            <p><strong>Message:</strong></p>
+            <p>${payload.message.trim().replace(/\n/g, '<br>')}</p>
+          `,
+        })
+        
+        console.log('[EMAIL] Notification sent successfully')
+      } else {
+        console.warn('[EMAIL] RESEND_API_KEY not configured, skipping notification')
+      }
+    } catch (emailError) {
+      // Email failure should not block successful lead submission
+      console.error('[EMAIL ERROR] Failed to send notification:', emailError)
+    }
+
     return res.status(200).json({ 
       success: true, 
       message: 'Thank you for your message. We will be in touch soon.' 
