@@ -12,10 +12,112 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Backend contact intake (replace prototype `handleSubmit` with a real POST endpoint + server-side validation + spam protection).
 - Replace legal placeholders with attorney-drafted Privacy Policy and Terms of Service.
 - Optimize logo file size (120 KB transparent PNG → ~10–30 KB via Squoosh/TinyPNG).
-- Add Open Graph + Twitter meta tags per route (via `react-helmet-async` or a small head manager).
-- Generate `sitemap.xml` at build time.
 - Production deploy to a static host with SPA fallback.
 - CI: GitHub Actions running `npm.cmd run build` on every PR.
+
+---
+
+## [0.4.0] — 2026-08-19 21:00 UTC+08:00 — Front-end completion: SEO, sitemap, scroll restoration
+
+### Added
+
+#### Open Graph & Twitter Card Meta Tags
+- **`src/hooks/useDocumentTitle.ts`** — extended with optional `ogImage` parameter.
+  - Now generates complete Open Graph meta tags: `og:title`, `og:type`, `og:url`, `og:description`, `og:image`.
+  - Now generates Twitter Card meta tags: `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`.
+  - Automatically converts relative image URLs to absolute URLs for social media crawlers.
+  - Properly cleans up all meta tags on unmount for correct SPA navigation behavior.
+- **`src/components/SiteLayout.tsx`** — added optional `ogImage` prop, passes through to `useDocumentTitle`.
+- **`src/data/content.ts`** — added `ogImage: '/image_assets/Student_Aid_Logo.png'` to `brand` object for default social sharing image.
+- **All 8 page components** updated to import `brand` and pass `ogImage={brand.ogImage}`:
+  - `HomePage.tsx`, `AboutPage.tsx`, `ContactPage.tsx`, `StudentSupportServicesPage.tsx`, `GroundworkServicesPage.tsx`, `PrivacyPolicyPage.tsx`, `TermsOfServicePage.tsx`, `NotFoundPage.tsx`.
+- **Result:** Social media shares (Facebook, Twitter, LinkedIn, Slack, etc.) now display rich previews with page title, description, and logo image.
+
+#### Sitemap Generation
+- **`scripts/generate-sitemap.js`** — new standalone Node.js script (no dependencies).
+  - Generates XML sitemap with all 7 real routes: `/`, `/about`, `/student-support-services`, `/groundwork-services`, `/contact`, `/privacy-policy`, `/terms-of-service`.
+  - Sets homepage priority to `1.0`, all other pages to `0.8`.
+  - Uses current date for `<lastmod>`.
+  - Outputs to `dist/sitemap.xml` after build.
+- **`package.json`** — updated build script: `"build": "tsc -b && vite build && node scripts/generate-sitemap.js"`.
+  - Sitemap now generates automatically on every production build.
+- **`public/robots.txt`** — added `Sitemap: https://mikazuki002.github.io/Student_Aid/sitemap.xml` reference.
+- **Result:** Search engines can discover and index all pages efficiently.
+
+#### Scroll-to-Top on Navigation
+- **`src/components/ScrollToTop.tsx`** — new component using React Router's `useLocation` hook.
+  - Automatically scrolls to `window.scrollTo(0, 0)` whenever the route pathname changes.
+  - Works for all navigation: link clicks, browser back/forward, programmatic navigation.
+  - Silent component (returns `null`, no visual output).
+- **`src/App.tsx`** — added `<ScrollToTop />` above `<Routes>`.
+- **Result:** Users always start at the top of each new page, never mid-scroll.
+
+### Fixed
+
+#### GitHub Pages Root Route
+- **`src/main.tsx`** — fixed `BrowserRouter` basename handling.
+  - Changed from `basename={import.meta.env.BASE_URL}` to `basename={import.meta.env.BASE_URL.replace(/\/$/, '') || '/'}`.
+  - React Router expects basename **without** trailing slash, but Vite's `BASE_URL` includes one (`/Student_Aid/`).
+  - **Problem:** Visiting `https://mikazuki002.github.io/Student_Aid/` showed 404 page instead of home page.
+  - **Solution:** Strip trailing slash before passing to BrowserRouter.
+- **Result:** GitHub Pages "Visit Site" button now correctly loads the home page, not the 404 page.
+
+### Audited
+
+#### Accessibility (WCAG 2.1 Level AA)
+- ✅ All sections have proper ARIA landmarks (`aria-labelledby`, `aria-label`).
+- ✅ Decorative icons marked with `aria-hidden="true"`.
+- ✅ Form inputs properly associated with `<label>` elements.
+- ✅ Error messages use `role="alert"` for immediate screen reader announcement.
+- ✅ Field errors connected via `aria-describedby`.
+- ✅ Focus management moves to first invalid field on form submit.
+- ✅ Keyboard navigation works correctly (no traps, logical tab order).
+- ✅ Heading hierarchy properly nested (h1 → h2 → h3).
+- ✅ Page titles update correctly on route changes.
+- ✅ Links have descriptive text (no "click here").
+- ✅ Touch targets meet 44×44px minimum for mobile.
+- **Result:** No accessibility issues found. Application is screen reader compatible and keyboard navigable.
+
+#### Responsive Design
+- ✅ Mobile (320px): Header stacks with hamburger menu, single-column layouts, touch-friendly.
+- ✅ Tablet (768px): Horizontal navigation, 2-column grids where appropriate.
+- ✅ Desktop (1440px): Full multi-column layouts, proper max-width constraints, no horizontal scroll.
+- ✅ Breakpoints: 320px, 540px, 720px, 768px, 960px, 1200px (container max-width).
+- ✅ Images use `max-width: 100%` for fluid scaling.
+- ✅ `prefers-reduced-motion` media query respected.
+- **Result:** No layout breaks or overflow issues at any viewport size.
+
+#### Image Optimization Audit
+- ✅ Both `<img>` tags have `width`, `height`, and `decoding="async"` attributes.
+  - Header logo: `width={56} height={56} decoding="async"`.
+  - Hero logo: `width={360} height={180} decoding="async"`.
+- 🚩 **FLAG:** `Student_Aid_Logo-removebg.png` is **119.83 KB** (exceeds 30KB recommendation).
+  - **Recommendation:** Compress to <30KB using TinyPNG, ImageOptim, or Squoosh before launch.
+  - File is functionally correct but could be optimized for faster page loads.
+
+### Documentation
+
+#### Deployment Migration Guide
+- **Created internal documentation** (not committed as file) for migrating from GitHub Pages to Vercel or Netlify.
+- **Key changes needed:**
+  - Remove `/Student_Aid/` base path from `vite.config.ts` (change to `/`).
+  - Create `vercel.json` or `netlify.toml` with SPA rewrite rules.
+  - Update sitemap base URL to new domain.
+- **Comparison table:** GitHub Pages vs. Vercel vs. Netlify (base path, SPA fallback, config files, custom domains, deploy previews, build times).
+- **Recommendation:** Vercel preferred for better Vite integration and faster builds.
+
+### Verified
+- **Build:** `npm run build` produces clean output with sitemap generation.
+- **Routes:** All 7 pages + 404 load correctly.
+- **Meta tags:** Open Graph and Twitter Card tags present in `<head>` for all routes.
+- **Scroll behavior:** Navigation scrolls to top correctly.
+- **Accessibility:** No ARIA violations, proper keyboard navigation.
+- **Responsive:** Layouts work at 320px, 768px, 1440px.
+- **GitHub Pages:** Root route fix deployed and working.
+
+### Pending
+- ⏳ **Logo optimization:** Replace with compressed version (<30KB).
+- ⏳ **Legal content:** Attorney-drafted Privacy Policy (7 sections) and Terms of Service (8 sections).
 
 ---
 

@@ -5,13 +5,14 @@ import SectionHeading from '../components/SectionHeading'
 import InfoCard from '../components/InfoCard'
 import ProcessSteps from '../components/ProcessSteps'
 import LegalNotice from '../components/LegalNotice'
-import { studentSupport, pageTitles, pageDescriptions } from '../data/content'
+import { studentSupport, pageTitles, pageDescriptions, brand } from '../data/content'
 
 export default function StudentSupportServicesPage() {
   return (
     <SiteLayout
       title={pageTitles['/student-support-services']}
       description={pageDescriptions['/student-support-services']}
+      ogImage={brand.ogImage}
     >
       <PageHero
         heading={studentSupport.hero.title}

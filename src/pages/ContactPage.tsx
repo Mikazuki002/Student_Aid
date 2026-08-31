@@ -5,7 +5,7 @@ import { brand, contact, pageTitles, pageDescriptions } from '../data/content'
 
 export default function ContactPage() {
   return (
-    <SiteLayout title={pageTitles['/contact']} description={pageDescriptions['/contact']}>
+    <SiteLayout title={pageTitles['/contact']} description={pageDescriptions['/contact']} ogImage={brand.ogImage}>
       <PageHero heading={contact.hero.heading} text={contact.hero.text} />
 
       <section className="page-section" aria-labelledby="contact-details-heading">

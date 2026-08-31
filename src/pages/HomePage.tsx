@@ -4,12 +4,12 @@ import TrustSection from '../components/TrustSection'
 import ServicesSection from '../components/ServicesSection'
 import ProcessSection from '../components/ProcessSection'
 import CTASection from '../components/CTASection'
-import { pageTitles, pageDescriptions } from '../data/content'
+import { pageTitles, pageDescriptions, brand } from '../data/content'
 
 // Homepage — preserves the Phase 1 content exactly.
 export default function HomePage() {
   return (
-    <SiteLayout title={pageTitles['/']} description={pageDescriptions['/']}>
+    <SiteLayout title={pageTitles['/']} description={pageDescriptions['/']} ogImage={brand.ogImage}>
       <Hero />
       <TrustSection />
       <ServicesSection />

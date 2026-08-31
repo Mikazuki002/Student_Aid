@@ -5,7 +5,7 @@ import { brand, privacyPolicy, pageTitles, pageDescriptions } from '../data/cont
 
 export default function PrivacyPolicyPage() {
   return (
-    <SiteLayout title={pageTitles['/privacy-policy']} description={pageDescriptions['/privacy-policy']}>
+    <SiteLayout title={pageTitles['/privacy-policy']} description={pageDescriptions['/privacy-policy']} ogImage={brand.ogImage}>
       <section className="page-section" aria-labelledby="pp-heading">
         <div className="container">
           <SectionHeading id="pp-heading" heading={privacyPolicy.heading} />

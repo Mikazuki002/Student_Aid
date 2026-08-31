@@ -5,13 +5,14 @@ import SectionHeading from '../components/SectionHeading'
 import InfoCard from '../components/InfoCard'
 import ProcessSteps from '../components/ProcessSteps'
 import LegalNotice from '../components/LegalNotice'
-import { groundwork, pageTitles, pageDescriptions } from '../data/content'
+import { groundwork, pageTitles, pageDescriptions, brand } from '../data/content'
 
 export default function GroundworkServicesPage() {
   return (
     <SiteLayout
       title={pageTitles['/groundwork-services']}
       description={pageDescriptions['/groundwork-services']}
+      ogImage={brand.ogImage}
     >
       <PageHero
         heading={groundwork.hero.heading}

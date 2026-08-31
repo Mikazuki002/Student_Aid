@@ -5,7 +5,7 @@ import { brand, termsOfService, pageTitles, pageDescriptions } from '../data/con
 
 export default function TermsOfServicePage() {
   return (
-    <SiteLayout title={pageTitles['/terms-of-service']} description={pageDescriptions['/terms-of-service']}>
+    <SiteLayout title={pageTitles['/terms-of-service']} description={pageDescriptions['/terms-of-service']} ogImage={brand.ogImage}>
       <section className="page-section" aria-labelledby="tos-heading">
         <div className="container">
           <SectionHeading id="tos-heading" heading={termsOfService.heading} />

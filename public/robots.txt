@@ -2,3 +2,5 @@
 # Adjust as needed before production launch.
 User-agent: *
 Allow: /
+
+Sitemap: https://mikazuki002.github.io/Student_Aid/sitemap.xml

@@ -11,6 +11,7 @@ export const brand = {
   emailHref: 'mailto:studentaidsupportgroupllc@gmail.com',
   address: '5551 Hollywood Blvd, Los Angeles, CA 90028',
   hours: 'Monday–Friday, 8:00 AM–9:00 PM CST',
+  ogImage: '/image_assets/Student_Aid_Logo.png', // Default OG image for social sharing
 }
 
 export const topBar = {

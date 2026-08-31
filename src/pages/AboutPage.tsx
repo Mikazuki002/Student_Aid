@@ -5,11 +5,11 @@ import SectionHeading from '../components/SectionHeading'
 import InfoCard from '../components/InfoCard'
 import ProcessSteps from '../components/ProcessSteps'
 import LegalNotice from '../components/LegalNotice'
-import { about, cta, pageTitles, pageDescriptions } from '../data/content'
+import { about, cta, pageTitles, pageDescriptions, brand } from '../data/content'
 
 export default function AboutPage() {
   return (
-    <SiteLayout title={pageTitles['/about']} description={pageDescriptions['/about']}>
+    <SiteLayout title={pageTitles['/about']} description={pageDescriptions['/about']} ogImage={brand.ogImage}>
       <PageHero eyebrow={undefined} heading={about.hero.heading} text={about.hero.text} />
 
       <section className="page-section" aria-labelledby="about-main-heading">

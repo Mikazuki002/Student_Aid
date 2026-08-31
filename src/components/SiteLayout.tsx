@@ -8,13 +8,14 @@ type SiteLayoutProps = {
   children: ReactNode
   title: string
   description?: string
+  ogImage?: string
 }
 
 // Shared layout: top contact bar + header + mobile menu drawer + main + footer.
 // Used by every page so we don't duplicate the chrome.
-export default function SiteLayout({ children, title, description }: SiteLayoutProps) {
+export default function SiteLayout({ children, title, description, ogImage }: SiteLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  useDocumentTitle(title, description)
+  useDocumentTitle(title, description, ogImage)
 
   return (
     <>
