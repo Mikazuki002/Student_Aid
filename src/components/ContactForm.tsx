@@ -147,7 +147,7 @@ export default function ContactForm() {
     // Real API call to Vercel serverless function
     setSubmitting(true)
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://student-aid-seven.vercel.app/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
