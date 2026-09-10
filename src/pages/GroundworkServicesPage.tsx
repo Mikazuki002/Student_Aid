@@ -5,9 +5,17 @@ import SectionHeading from '../components/SectionHeading'
 import InfoCard from '../components/InfoCard'
 import ProcessSteps from '../components/ProcessSteps'
 import LegalNotice from '../components/LegalNotice'
+import ImageScroller from '../components/ImageScroller'
 import { groundwork, pageTitles, pageDescriptions, brand } from '../data/content'
 
 export default function GroundworkServicesPage() {
+  const scrollerImages = [
+    { src: 'image_assets/student-photo-4.png', alt: 'Student planning groundwork services' },
+    { src: 'image_assets/student-photo-6.png', alt: 'Students reviewing financial options' },
+    { src: 'image_assets/student-photo-2.png', alt: 'Student consulting with advisor' },
+    { src: 'image_assets/student-photo-5.png', alt: 'Group planning financial aid strategy' },
+  ]
+
   return (
     <SiteLayout
       title={pageTitles['/groundwork-services']}
@@ -19,20 +27,10 @@ export default function GroundworkServicesPage() {
         text={groundwork.hero.text}
       />
 
-      {/* Hero imagery for warmth */}
-      <section className="page-section" style={{ paddingTop: 0 }}>
+      {/* Compact image scroller */}
+      <section className="page-section" style={{ paddingTop: 0, paddingBottom: '2rem' }}>
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
-            <img
-              src={`${import.meta.env.BASE_URL}image_assets/student-photo-6.png`}
-              alt="Student reviewing groundwork services information"
-              width={600}
-              height={400}
-              loading="eager"
-              decoding="async"
-              style={{ objectFit: 'cover', borderRadius: '12px', maxWidth: '100%', height: 'auto' }}
-            />
-          </div>
+          <ImageScroller images={scrollerImages} />
         </div>
       </section>
 

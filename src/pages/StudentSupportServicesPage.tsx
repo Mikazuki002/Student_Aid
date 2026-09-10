@@ -5,9 +5,17 @@ import SectionHeading from '../components/SectionHeading'
 import InfoCard from '../components/InfoCard'
 import ProcessSteps from '../components/ProcessSteps'
 import LegalNotice from '../components/LegalNotice'
+import ImageScroller from '../components/ImageScroller'
 import { studentSupport, pageTitles, pageDescriptions, brand } from '../data/content'
 
 export default function StudentSupportServicesPage() {
+  const scrollerImages = [
+    { src: 'image_assets/student-photo-1.png', alt: 'Students working together on financial planning' },
+    { src: 'image_assets/student-photo-3.png', alt: 'Student reviewing loan documents' },
+    { src: 'image_assets/student-photo-5.png', alt: 'Students collaborating on aid applications' },
+    { src: 'image_assets/student-photo-2.png', alt: 'Student meeting with financial advisor' },
+  ]
+
   return (
     <SiteLayout
       title={pageTitles['/student-support-services']}
@@ -19,20 +27,10 @@ export default function StudentSupportServicesPage() {
         text={studentSupport.hero.text}
       />
 
-      {/* Hero imagery for warmth */}
-      <section className="page-section" style={{ paddingTop: 0 }}>
+      {/* Compact image scroller */}
+      <section className="page-section" style={{ paddingTop: 0, paddingBottom: '2rem' }}>
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
-            <img
-              src={`${import.meta.env.BASE_URL}image_assets/student-photo-5.png`}
-              alt="Students collaborating on financial planning"
-              width={600}
-              height={400}
-              loading="eager"
-              decoding="async"
-              style={{ objectFit: 'cover', borderRadius: '12px', maxWidth: '100%', height: 'auto' }}
-            />
-          </div>
+          <ImageScroller images={scrollerImages} />
         </div>
       </section>
 
