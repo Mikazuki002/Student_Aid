@@ -1764,44 +1764,6 @@ ol {
   transform: scale(1.05);
 }
 
-/* Hero student image styling */
-.hero__student-image {
-  margin-top: 2rem;
-  display: none; /* Hidden on mobile, shown on desktop */
-}
-
-@media (min-width: 768px) {
-  .hero__student-image {
-    display: block;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero__visual {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-  }
-  
-  .hero__visual-card {
-    flex-shrink: 0;
-  }
-  
-  .hero__student-image {
-    flex: 1;
-    margin-top: 0;
-    max-width: 400px;
-    overflow: hidden;
-    border-radius: 8px;
-  }
-  
-  .hero__student-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
 
 /* ========================================
    Image Scroller Component

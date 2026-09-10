@@ -40,15 +40,6 @@ export default function Hero() {
               {brand.tagline}
             </p>
           </div>
-          {/* Student imagery for warmth and approachability */}
-          <div className="hero__student-image">
-            <img
-              src={`${import.meta.env.BASE_URL}image_assets/student-photo-1.png`}
-              alt="Students working together on financial planning"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
         </div>
       </div>
     </section>
