@@ -5,8 +5,6 @@
 export const brand = {
   name: 'Student Aid Support Group LLC',
   tagline: 'Supporting Students • Empowering Futures',
-  phoneDisplay: '213-261-0646',
-  phoneHref: 'tel:2132610646',
   email: 'help@studentaidsupport.us',
   emailHref: 'mailto:help@studentaidsupport.us',
   address: '5551 Hollywood Blvd, Los Angeles, CA 90028',
@@ -324,7 +322,6 @@ export const contact = {
     text: 'Have questions about student loan guidance or document support? Send us a message and tell us what you would like help understanding.',
   },
   details: {
-    phoneLabel: 'Phone',
     emailLabel: 'Email',
     addressLabel: 'Address',
     hoursLabel: 'Hours',

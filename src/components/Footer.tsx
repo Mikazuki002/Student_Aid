@@ -10,7 +10,6 @@ export default function Footer() {
             <div className="footer__name">{brand.name}</div>
             <p className="footer__tagline">{footer.description}</p>
             <address className="footer__address">
-              <a href={brand.phoneHref}>{brand.phoneDisplay}</a>
               <a href={brand.emailHref}>{brand.email}</a>
               <span>{brand.address}</span>
             </address>

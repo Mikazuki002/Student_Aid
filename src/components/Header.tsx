@@ -13,9 +13,6 @@ export default function Header({ onMenuToggle, mobileMenuOpen }: HeaderProps) {
         <div className="container top-bar__inner">
           <p className="top-bar__text">{topBar.text}</p>
           <div className="top-bar__contact">
-            <a className="top-bar__link" href={brand.phoneHref}>
-              {brand.phoneDisplay}
-            </a>
             <a className="top-bar__link" href={brand.emailHref}>
               {brand.email}
             </a>

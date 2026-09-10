@@ -15,12 +15,6 @@ export default function ContactPage() {
           </h2>
           <dl className="contact-details">
             <div className="contact-details__row">
-              <dt className="contact-details__label">{contact.details.phoneLabel}</dt>
-              <dd className="contact-details__value">
-                <a href={brand.phoneHref}>{brand.phoneDisplay}</a>
-              </dd>
-            </div>
-            <div className="contact-details__row">
               <dt className="contact-details__label">{contact.details.emailLabel}</dt>
               <dd className="contact-details__value">
                 <a href={brand.emailHref}>{brand.email}</a>

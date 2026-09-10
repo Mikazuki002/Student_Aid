@@ -22,8 +22,6 @@ export default function PrivacyPolicyPage() {
             <section className="legal-prose__block">
               <h2 className="legal-prose__heading">Reach Us</h2>
               <p className="legal-prose__text">
-                <a href={brand.phoneHref}>{brand.phoneDisplay}</a>
-                {' · '}
                 <a href={brand.emailHref}>{brand.email}</a>
                 {' · '}
                 {brand.address}
