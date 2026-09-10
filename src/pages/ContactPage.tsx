@@ -8,6 +8,12 @@ export default function ContactPage() {
     <SiteLayout title={pageTitles['/contact']} description={pageDescriptions['/contact']} ogImage={brand.ogImage}>
       <PageHero heading={contact.hero.heading} text={contact.hero.text} />
 
+      <section className="page-section page-section--marble" aria-label="Send a message">
+        <div className="container">
+          <ContactForm />
+        </div>
+      </section>
+
       <section className="page-section" aria-labelledby="contact-details-heading">
         <div className="container">
           <h2 id="contact-details-heading" className="section-heading__title">
@@ -29,12 +35,6 @@ export default function ContactPage() {
               <dd className="contact-details__value">{brand.hours}</dd>
             </div>
           </dl>
-        </div>
-      </section>
-
-      <section className="page-section page-section--marble" aria-label="Send a message">
-        <div className="container">
-          <ContactForm />
         </div>
       </section>
     </SiteLayout>
