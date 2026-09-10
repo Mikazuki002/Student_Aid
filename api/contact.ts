@@ -177,7 +177,7 @@ export default async function handler(
         
         await resend.emails.send({
           from: 'onboarding@resend.dev',
-          to: 'studentaidsupportgroupllc@gmail.com',
+          to: 'help@studentaidsupport.us',
           subject: `New contact form submission — ${payload.firstName.trim()} ${payload.lastName.trim()}`,
           html: `
             <h2>New Contact Form Submission</h2>
