@@ -19,6 +19,23 @@ export default function GroundworkServicesPage() {
         text={groundwork.hero.text}
       />
 
+      {/* Hero imagery for warmth */}
+      <section className="page-section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
+            <img
+              src={`${import.meta.env.BASE_URL}image_assets/student-photo-6.png`}
+              alt="Student reviewing groundwork services information"
+              width={600}
+              height={400}
+              loading="eager"
+              decoding="async"
+              style={{ objectFit: 'cover', borderRadius: '12px', maxWidth: '100%', height: 'auto' }}
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="page-section" aria-labelledby="gw-whatis-heading">
         <div className="container">
           <SectionHeading

@@ -19,6 +19,23 @@ export default function StudentSupportServicesPage() {
         text={studentSupport.hero.text}
       />
 
+      {/* Hero imagery for warmth */}
+      <section className="page-section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
+            <img
+              src={`${import.meta.env.BASE_URL}image_assets/student-photo-5.png`}
+              alt="Students collaborating on financial planning"
+              width={600}
+              height={400}
+              loading="eager"
+              decoding="async"
+              style={{ objectFit: 'cover', borderRadius: '12px', maxWidth: '100%', height: 'auto' }}
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="page-section" aria-labelledby="sss-help-heading">
         <div className="container">
           <SectionHeading id="sss-help-heading" heading={studentSupport.whatWeHelpWith.heading} />

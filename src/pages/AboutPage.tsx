@@ -5,9 +5,16 @@ import SectionHeading from '../components/SectionHeading'
 import InfoCard from '../components/InfoCard'
 import ProcessSteps from '../components/ProcessSteps'
 import LegalNotice from '../components/LegalNotice'
+import StudentShowcase from '../components/StudentShowcase'
 import { about, cta, pageTitles, pageDescriptions, brand } from '../data/content'
 
 export default function AboutPage() {
+  const studentImages = [
+    { src: 'image_assets/student-photo-2.png', alt: 'Student reviewing documents with advisor' },
+    { src: 'image_assets/student-photo-3.png', alt: 'Student planning financial aid options' },
+    { src: 'image_assets/student-photo-4.png', alt: 'Student successfully managing student loans' },
+  ]
+
   return (
     <SiteLayout title={pageTitles['/about']} description={pageDescriptions['/about']} ogImage={brand.ogImage}>
       <PageHero eyebrow={undefined} heading={about.hero.heading} text={about.hero.text} />
@@ -19,6 +26,7 @@ export default function AboutPage() {
             heading={about.main.heading}
             description={about.main.text}
           />
+          <StudentShowcase images={studentImages} />
         </div>
       </section>
 
