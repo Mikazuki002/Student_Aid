@@ -5,16 +5,13 @@ import SectionHeading from '../components/SectionHeading'
 import InfoCard from '../components/InfoCard'
 import ProcessSteps from '../components/ProcessSteps'
 import LegalNotice from '../components/LegalNotice'
-import ImageScroller from '../components/ImageScroller'
 import { studentSupport, pageTitles, pageDescriptions, brand } from '../data/content'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export default function StudentSupportServicesPage() {
-  const scrollerImages = [
-    { src: 'image_assets/student-photo-1.png', alt: 'Students working together on financial planning' },
-    { src: 'image_assets/student-photo-3.png', alt: 'Student reviewing loan documents' },
-    { src: 'image_assets/student-photo-5.png', alt: 'Students collaborating on aid applications' },
-    { src: 'image_assets/student-photo-2.png', alt: 'Student meeting with financial advisor' },
-  ]
+  const helpReveal = useScrollReveal()
+  const approachReveal = useScrollReveal()
+  const audienceReveal = useScrollReveal()
 
   return (
     <SiteLayout
@@ -27,14 +24,11 @@ export default function StudentSupportServicesPage() {
         text={studentSupport.hero.text}
       />
 
-      {/* Compact image scroller */}
-      <section className="page-section" style={{ paddingTop: 0, paddingBottom: '2rem' }}>
-        <div className="container">
-          <ImageScroller images={scrollerImages} />
-        </div>
-      </section>
-
-      <section className="page-section" aria-labelledby="sss-help-heading">
+      <section
+        ref={helpReveal.elementRef as React.RefObject<HTMLElement>}
+        className={`page-section scroll-reveal ${helpReveal.isVisible ? 'scroll-reveal--visible' : ''}`}
+        aria-labelledby="sss-help-heading"
+      >
         <div className="container">
           <SectionHeading id="sss-help-heading" heading={studentSupport.whatWeHelpWith.heading} />
           <div className="info-grid">
@@ -45,14 +39,22 @@ export default function StudentSupportServicesPage() {
         </div>
       </section>
 
-      <section className="page-section page-section--marble" aria-labelledby="sss-approach-heading">
+      <section
+        ref={approachReveal.elementRef as React.RefObject<HTMLElement>}
+        className={`page-section page-section--marble scroll-reveal ${approachReveal.isVisible ? 'scroll-reveal--visible' : ''}`}
+        aria-labelledby="sss-approach-heading"
+      >
         <div className="container">
           <SectionHeading id="sss-approach-heading" heading={studentSupport.approach.heading} />
           <ProcessSteps steps={studentSupport.approach.steps} />
         </div>
       </section>
 
-      <section className="page-section" aria-labelledby="sss-audience-heading">
+      <section
+        ref={audienceReveal.elementRef as React.RefObject<HTMLElement>}
+        className={`page-section scroll-reveal ${audienceReveal.isVisible ? 'scroll-reveal--visible' : ''}`}
+        aria-labelledby="sss-audience-heading"
+      >
         <div className="container">
           <SectionHeading id="sss-audience-heading" heading={studentSupport.audience.heading} />
           <ul className="audience-list">

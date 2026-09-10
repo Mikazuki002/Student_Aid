@@ -45,11 +45,8 @@ export default function Hero() {
             <img
               src={`${import.meta.env.BASE_URL}image_assets/student-photo-1.png`}
               alt="Students working together on financial planning"
-              width={400}
-              height={300}
               loading="lazy"
               decoding="async"
-              style={{ objectFit: 'cover', borderRadius: '8px' }}
             />
           </div>
         </div>

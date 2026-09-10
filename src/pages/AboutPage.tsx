@@ -7,6 +7,7 @@ import ProcessSteps from '../components/ProcessSteps'
 import LegalNotice from '../components/LegalNotice'
 import StudentShowcase from '../components/StudentShowcase'
 import { about, cta, pageTitles, pageDescriptions, brand } from '../data/content'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export default function AboutPage() {
   const studentImages = [
@@ -15,11 +16,19 @@ export default function AboutPage() {
     { src: 'image_assets/student-photo-4.png', alt: 'Student successfully managing student loans' },
   ]
 
+  const mainReveal = useScrollReveal()
+  const valuesReveal = useScrollReveal()
+  const processReveal = useScrollReveal()
+
   return (
     <SiteLayout title={pageTitles['/about']} description={pageDescriptions['/about']} ogImage={brand.ogImage}>
       <PageHero eyebrow={undefined} heading={about.hero.heading} text={about.hero.text} />
 
-      <section className="page-section" aria-labelledby="about-main-heading">
+      <section
+        ref={mainReveal.elementRef as React.RefObject<HTMLElement>}
+        className={`page-section scroll-reveal ${mainReveal.isVisible ? 'scroll-reveal--visible' : ''}`}
+        aria-labelledby="about-main-heading"
+      >
         <div className="container">
           <SectionHeading
             id="about-main-heading"
@@ -30,7 +39,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="page-section page-section--marble" aria-labelledby="about-values-heading">
+      <section
+        ref={valuesReveal.elementRef as React.RefObject<HTMLElement>}
+        className={`page-section page-section--marble scroll-reveal ${valuesReveal.isVisible ? 'scroll-reveal--visible' : ''}`}
+        aria-labelledby="about-values-heading"
+      >
         <div className="container">
           <SectionHeading
             id="about-values-heading"
@@ -45,7 +58,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="page-section" aria-labelledby="about-process-heading">
+      <section
+        ref={processReveal.elementRef as React.RefObject<HTMLElement>}
+        className={`page-section scroll-reveal ${processReveal.isVisible ? 'scroll-reveal--visible' : ''}`}
+        aria-labelledby="about-process-heading"
+      >
         <div className="container">
           <SectionHeading
             id="about-process-heading"

@@ -5,16 +5,13 @@ import SectionHeading from '../components/SectionHeading'
 import InfoCard from '../components/InfoCard'
 import ProcessSteps from '../components/ProcessSteps'
 import LegalNotice from '../components/LegalNotice'
-import ImageScroller from '../components/ImageScroller'
 import { groundwork, pageTitles, pageDescriptions, brand } from '../data/content'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export default function GroundworkServicesPage() {
-  const scrollerImages = [
-    { src: 'image_assets/student-photo-4.png', alt: 'Student planning groundwork services' },
-    { src: 'image_assets/student-photo-6.png', alt: 'Students reviewing financial options' },
-    { src: 'image_assets/student-photo-2.png', alt: 'Student consulting with advisor' },
-    { src: 'image_assets/student-photo-5.png', alt: 'Group planning financial aid strategy' },
-  ]
+  const whatIsReveal = useScrollReveal()
+  const benefitsReveal = useScrollReveal()
+  const howItWorksReveal = useScrollReveal()
 
   return (
     <SiteLayout
@@ -27,14 +24,11 @@ export default function GroundworkServicesPage() {
         text={groundwork.hero.text}
       />
 
-      {/* Compact image scroller */}
-      <section className="page-section" style={{ paddingTop: 0, paddingBottom: '2rem' }}>
-        <div className="container">
-          <ImageScroller images={scrollerImages} />
-        </div>
-      </section>
-
-      <section className="page-section" aria-labelledby="gw-whatis-heading">
+      <section
+        ref={whatIsReveal.elementRef as React.RefObject<HTMLElement>}
+        className={`page-section scroll-reveal ${whatIsReveal.isVisible ? 'scroll-reveal--visible' : ''}`}
+        aria-labelledby="gw-whatis-heading"
+      >
         <div className="container">
           <SectionHeading
             id="gw-whatis-heading"
@@ -45,7 +39,11 @@ export default function GroundworkServicesPage() {
         </div>
       </section>
 
-      <section className="page-section page-section--marble" aria-labelledby="gw-benefits-heading">
+      <section
+        ref={benefitsReveal.elementRef as React.RefObject<HTMLElement>}
+        className={`page-section page-section--marble scroll-reveal ${benefitsReveal.isVisible ? 'scroll-reveal--visible' : ''}`}
+        aria-labelledby="gw-benefits-heading"
+      >
         <div className="container">
           <SectionHeading id="gw-benefits-heading" heading={groundwork.benefits.heading} />
           <div className="info-grid">
@@ -56,7 +54,11 @@ export default function GroundworkServicesPage() {
         </div>
       </section>
 
-      <section className="page-section" aria-labelledby="gw-how-heading">
+      <section
+        ref={howItWorksReveal.elementRef as React.RefObject<HTMLElement>}
+        className={`page-section scroll-reveal ${howItWorksReveal.isVisible ? 'scroll-reveal--visible' : ''}`}
+        aria-labelledby="gw-how-heading"
+      >
         <div className="container">
           <SectionHeading id="gw-how-heading" heading={groundwork.howItWorks.heading} />
           <ProcessSteps steps={groundwork.howItWorks.steps} />
