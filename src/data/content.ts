@@ -208,7 +208,7 @@ export const about = {
       'A four-step approach designed to make your experience organized and easy to follow.',
     steps: [
       { number: '01', title: 'Listen to your questions', description: 'We begin by listening so we understand what you are trying to learn.' },
-      { number: '02', title: 'Review the information you provide', description: 'We go over what you share and identify the areas that may deserve further review.' },
+      { number: '02', title: 'Review the information you provided', description: 'We go over what you share and identify the areas that may deserve further review.' },
       { number: '03', title: 'Explain possible paths and next steps', description: 'We walk you through what each option could mean for your situation.' },
       { number: '04', title: 'Help you stay organized', description: 'We help you keep documents and questions in order so next steps are easier to manage.' },
     ],
